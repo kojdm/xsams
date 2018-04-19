@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\NewAlu;
+
+use App\Jobs\SendNewAluEmail;
 use Illuminate\Http\Request;
 use App\User;
 use App\AttendanceLog;
@@ -61,12 +64,25 @@ class TimekeepingController extends Controller
                 'range' => $range,
             ];
 
+            // Send emails of new recorded ALUs to all employees in the database
+            $this->sendEmails($logstart, $logend);
+
             File::cleanDirectory(storage_path("app/attendance_logs"));
             return view('timekeeping.index')->with($data);
         }
         else {
             File::cleanDirectory(storage_path("app/attendance_logs"));
             return redirect('/admin/timekeeping')->with('error', "Attendance log for $logstart – $logend already uploaded");
+        }
+    }
+
+    private function sendEmails($start, $end)
+    {
+        $alus = Alu::whereBetween('date', [$start, $end])->get();
+
+        foreach ($alus as $alu) {
+            $user = $alu->attendance_record->user;
+            $user->notify(new NewAlu($user, $alu));
         }
     }
 

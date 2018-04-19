@@ -10,12 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/test', function(){
-    return view('test');
-});
-
-
 Auth::routes();
 Route::match(['get', 'post'], 'register', function(){
     return redirect('/');

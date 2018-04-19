@@ -115,7 +115,7 @@ if (! function_exists('compute'))
                                 $alu->date = $day;
                                 $alu->time = $timein;
                                 $alu->date_alu_due = date('Y-m-d', strtotime($day. ' + 7 days'));
-                                $alu->save();
+                                $alu->save();                              
 
                                 // Delete old (advanced) ALU and ALU Form
                                 $advanced_undertime->alu_form->delete();
@@ -165,7 +165,7 @@ if (! function_exists('compute'))
                                 $alu->date = $day;
                                 $alu->time = $timeout;
                                 $alu->date_alu_due = date('Y-m-d', strtotime($day. ' + 7 days'));
-                                $alu->save();
+                                $alu->save();                            
 
                                 // Delete old (advanced) ALU and ALU Form
                                 $advanced_undertime->alu_form->delete();
@@ -184,7 +184,7 @@ if (! function_exists('compute'))
                             $alu->date = $day;
                             $alu->time = $timeout;
                             $alu->date_alu_due = date('Y-m-d', strtotime($day. ' + 7 days'));                            
-                            $alu->save();
+                            $alu->save();                        
                         }
                     }
                     else {
@@ -210,6 +210,8 @@ if (! function_exists('compute'))
                         $advanced_absence->save();
                     }
                     elseif ($loa_form_alu) {
+                        // LOA Form filed
+                        
                         $loa_form_alu->is_confirmed = true;
                         $loa_form_alu->save();
                     }
@@ -220,7 +222,7 @@ if (! function_exists('compute'))
                         $alu->type = 'A';
                         $alu->date = $day;
                         $alu->date_alu_due = date('Y-m-d', strtotime($day. ' + 7 days'));                       
-                        $alu->save();
+                        $alu->save();                      
                     }
                 }
             }
