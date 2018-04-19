@@ -9,6 +9,7 @@ use App\User;
 use App\AttendanceRecord;
 use App\LeaveCounter;
 use DB;
+use Carbon\Carbon;
 
 // Give admin CRUD functionality for users
 
