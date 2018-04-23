@@ -1,13 +1,18 @@
 ----
+
 # Xavier School Attendance Management System
+
+----
 
 ## Requirements
 * Operating System: Windows 7 & up
 * [XAMPP for Windows 7.24](https://www.apachefriends.org/download.html)
 * [Composer](https://getcomposer.org/download/)
 
+----
+
 ## Setup
-###Composer
+### Composer
 1. Open the **timwork-xsams** project folder and rename `.env.example` file to `.env`
 2. Open a terminal or command line, `cd` to the timwork-xsams folder, and run `composer install`
 
@@ -15,7 +20,7 @@
 1. Navigate to this directory: `C:\xampp\apache\conf\extra`
 2. Look for a file called `httpd-vhosts.conf` and open it on your favorite text editor.
 3. Go to the very bottom of the text, add these lines, and save the file:
-----
+
     <VirtualHost *:80>
         DocumentRoot "C:/xampp/htdocs/"
         ServerName localhost
@@ -31,7 +36,6 @@
 1. Run **Notepad** as adminstrator.
 2. Open the `hosts` file found in `C:\Windows\System32\drivers\etc\
 3. Go the the very bottom of the text, add these lines, and save the file:
-----
     127.0.0.1 localhost
     127.0.0.1 xsams.test
 
@@ -47,9 +51,9 @@
 
 ## Usage
 1. Make sure both **Apache** and **MySQL** are running in the XAMPP Control Panel.
-2. Access the system by visiting `xsams.test` in your web browser.
+2. Access the system by visiting `http://xsams.test` in your web browser.
 3. Login to **XSAMS** by using any of the following login credentials:
-----
+
     ADMIN
     admin@xs.edu.ph        |   password
 
@@ -57,5 +61,6 @@
     cking@xs.edu.ph        |   password   (Supervisor - Accounting)
     rmcdonald@xs.edu.ph    |   password   (Accounting)
     minasal@xs.edu.ph      |   password   (Athletics)
-    jbee@xs.edu.ph         |   password   (NEXT) 
+    jbee@xs.edu.ph         |   password   (NEXT)
+
 ----
