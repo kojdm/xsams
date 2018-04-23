@@ -36,7 +36,7 @@
 
 ### Localhost Configuration
 1. Run **Notepad** as adminstrator.
-2. Open the `hosts` file found in `C:\Windows\System32\drivers\etc\
+2. Open the `hosts` file found in `C:\Windows\System32\drivers\etc\`
 3. Go the the very bottom of the text, add these lines, and save the file:
 
 ``` 
