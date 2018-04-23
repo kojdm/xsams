@@ -21,6 +21,7 @@
 2. Look for a file called `httpd-vhosts.conf` and open it on your favorite text editor.
 3. Go to the very bottom of the text, add these lines, and save the file:
 
+<code>
     <VirtualHost *:80>
         DocumentRoot "C:/xampp/htdocs/"
         ServerName localhost
@@ -31,13 +32,17 @@
         xsams/public"
         ServerName xsams.test
     </VirtualHost>
+</code>
 
 ### Localhost Configuration
 1. Run **Notepad** as adminstrator.
 2. Open the `hosts` file found in `C:\Windows\System32\drivers\etc\
 3. Go the the very bottom of the text, add these lines, and save the file:
+
+<code> 
     127.0.0.1 localhost
     127.0.0.1 xsams.test
+</code>
 
 ### Database Setup
 1. Open the **XAMPP Control Panel**.
@@ -54,6 +59,7 @@
 2. Access the system by visiting `http://xsams.test` in your web browser.
 3. Login to **XSAMS** by using any of the following login credentials:
 
+<code>
     ADMIN
     admin@xs.edu.ph        |   password
 
@@ -62,5 +68,6 @@
     rmcdonald@xs.edu.ph    |   password   (Accounting)
     minasal@xs.edu.ph      |   password   (Athletics)
     jbee@xs.edu.ph         |   password   (NEXT)
+</code>
 
 ----
