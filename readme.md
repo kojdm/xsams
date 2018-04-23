@@ -1,59 +1,61 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+----
+# Xavier School Attendance Management System
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Requirements
+* Operating System: Windows 7 & up
+* [XAMPP for Windows 7.24](https://www.apachefriends.org/download.html)
+* [Composer](https://getcomposer.org/download/)
 
-## About Laravel
+## Setup
+###Composer
+1. Open the **timwork-xsams** project folder and rename `.env.example` file to `.env`
+2. Open a terminal or command line, `cd` to the timwork-xsams folder, and run `composer install`
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+### VirtualHost Configuration
+1. Navigate to this directory: `C:\xampp\apache\conf\extra`
+2. Look for a file called `httpd-vhosts.conf` and open it on your favorite text editor.
+3. Go to the very bottom of the text, add these lines, and save the file:
+----
+    <VirtualHost *:80>
+        DocumentRoot "C:/xampp/htdocs/"
+        ServerName localhost
+    </VirtualHost>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+    <VirtualHost *:80>
+        DocumentRoot "C:/xampp/htdocs/timwork- 
+        xsams/public"
+        ServerName xsams.test
+    </VirtualHost>
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+### Localhost Configuration
+1. Run **Notepad** as adminstrator.
+2. Open the `hosts` file found in `C:\Windows\System32\drivers\etc\
+3. Go the the very bottom of the text, add these lines, and save the file:
+----
+    127.0.0.1 localhost
+    127.0.0.1 xsams.test
 
-## Learning Laravel
+### Database Setup
+1. Open the **XAMPP Control Panel**.
+2. Start both the **Apache** and **MySQL** services
+3. Open your web browser and enter `localhost/phpmyadmin` in the address bar.
+4. In **phpMyAdmin**, create a new database called `xsams`.
+5. Open a terminal or command line and `cd` to the timwork-xsams folder.
+6. Migrate and seed the database by running `php artisan migrate --seed`.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+----
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+## Usage
+1. Make sure both **Apache** and **MySQL** are running in the XAMPP Control Panel.
+2. Access the system by visiting `xsams.test` in your web browser.
+3. Login to **XSAMS** by using any of the following login credentials:
+----
+    ADMIN
+    admin@xs.edu.ph        |   password
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    EMPLOYEES
+    cking@xs.edu.ph        |   password   (Supervisor - Accounting)
+    rmcdonald@xs.edu.ph    |   password   (Accounting)
+    minasal@xs.edu.ph      |   password   (Athletics)
+    jbee@xs.edu.ph         |   password   (NEXT) 
+----
