@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Hash;
+use Auth;
 
 class ChangePasswordsController extends Controller
 {
@@ -23,17 +24,17 @@ class ChangePasswordsController extends Controller
             'new_password' => 'required|string|min:6|confirmed'
         ]);
 
+        if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
+            // The passwords do not match
+            return redirect()->back()->with('error', 'Current password is wrong');
+        }
+
+        // Change password
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
+        $user->password = bcrypt($request->input('new_password'));
+        $user->save();
 
-        if (!(Hash::check($request->get('current-password'), $user->password))) {
-            $user->password = bcrypt($request->input('new_password'));
-            $user->save();
-
-            return redirect('/home')->with('success', 'Password successfully changed');
-        }
-        else {
-            return back()->with('error', 'Current password is wrong');
-        }
+        return redirect('/home')->with('success', 'Password successfully changed');
     }
 }
