@@ -41,28 +41,62 @@ class EmailTestSeeder extends Seeder
         $role_supervisor->name = 'supervisor';
         $role_supervisor->save();
 
-        // Create Users - Employees
+        // Create Users - Supervisor        
         $user = new User;
-        $user->email = 'norenceilicito@gmail.com';
+        $user->email = 'cking@mailinator.com';
         $user->password = bcrypt('password');
-        $user->employee_num = 666420;
-        $user->last_name = 'Ilicito';
-        $user->first_name = 'Norence';
-        $user->middle_name = 'G.';
+        $user->employee_num = 198888;
+        $user->last_name = 'King';
+        $user->first_name = 'Chow';
+        $user->middle_name = 'E.';
         $user->department_id = 1;
         $user->position = 'Supervisor';
         $user->shift_start = '09:00:00';
-        $user->shift_end = '17:00:00';
+        $user->shift_end = '18:00:00';
         $user->save();
         $user->roles()->attach($role_supervisor);
+
+        // Create Users - Employees
+        $user = new User;
+        $user->email = 'jbee@mailinator.com';
+        $user->password = bcrypt('password');
+        $user->employee_num = 187000;
+        $user->last_name = 'Bee';
+        $user->first_name = 'Jolly';
+        $user->middle_name = 'B.';
+        $user->department_id = 1;
+        $user->position = 'Employee';
+        $user->shift_start = '09:00:00';
+        $user->shift_end = '18:00:00';
+        $user->save();
+        $user->roles()->attach($role_employee);
 
         // Create Attendance Records
         DB::table('attendance_records')->insert([
             'user_id' => 1,
         ]);
 
+        DB::table('attendance_records')->insert([
+            'user_id' => 2,
+        ]);
+
         $lc = new LeaveCounter;
         $lc->attendance_record_id = 1;
+        $date_now = Carbon::now('Asia/Manila');
+        if ($date_now->month >= 6) {
+            $ys = $date_now->year;
+            $ye = $date_now->addYear()->year;
+        }
+        else {
+            $ye = $date_now->year;
+            $ys = $date_now->subYear()->year;
+        }
+        $lc->year_start = $ys;
+        $lc->year_end = $ye;
+        $lc->save();
+
+        $lc = new LeaveCounter;
+        $lc->attendance_record_id = 2;
         $date_now = Carbon::now('Asia/Manila');
         if ($date_now->month >= 6) {
             $ys = $date_now->year;

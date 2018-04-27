@@ -119,6 +119,13 @@ class AluFormsController extends Controller
         if ($alu->is_expired) {
             return redirect('/home')->with('error', 'ALU Form has already expired');
         }
+        elseif (!$alu->hasLoaForm() && strtotime($alu->date_alu_due) < strtotime(getDateNow())) {
+            $alu->is_expired = true;
+            $alu->decision = 'UW';
+            $alu->save();
+
+            return redirect('/home')->with('error', 'ALU Form has already expired');            
+        }
 
         // Check for correct user (if logged in user matches alu's user)
         if ($user_id !== $alu->attendance_record->user->id) {
