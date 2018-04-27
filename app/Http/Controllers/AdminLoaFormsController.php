@@ -119,10 +119,30 @@ class AdminLoaFormsController extends Controller
         ]);
 
         $loa_form = LoaForm::find($loa_form_id);
+        $user = $loa_form->attendance_record->user;
         
         $loa_form->admin_remarks = $request->input('admin_remarks');
         $loa_form->is_approved_admin = true;
         $loa_form->save();
+
+        // Deduct from Leave Counter of user
+        $lc = LeaveCounter::find($user->attendance_record->id);
+        if ($loa_form->classification == "VLP") {
+            $lc->vlp_count -= $loa_form->num_work_days;
+        }
+        elseif ($loa_form->classification == "SPL") {
+            $lc->spl_count -= $loa_form->num_work_days;
+        }
+        elseif ($loa_form->classification == "GL") {
+            $lc->GL_count -= $loa_form->num_work_days;
+        }
+        elseif ($loa_form->classification == "VAWCL") {
+            $lc->vawcl_count -= $loa_form->num_work_days;
+        }
+        else {
+            $lc->sl_count -= $loa_form->num_work_days;
+        }
+        $lc->save();
 
         return redirect('/admin')->with('success', 'LOA Form approved');
     }

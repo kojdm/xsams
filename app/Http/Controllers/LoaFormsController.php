@@ -159,22 +159,6 @@ class LoaFormsController extends Controller
                 $alu->save();
                 $alu->loa_form()->attach($loa_form);
             }
-            
-            // Deduct from Leave Counter of user
-            $lc = LeaveCounter::find($user->attendance_record->id);
-            if ($loa_form->classification == "VLP") {
-                $lc->vlp_count -= $loa_form->num_work_days;
-            }
-            elseif ($loa_form->classification == "SPL") {
-                $lc->spl_count -= $loa_form->num_work_days;
-            }
-            elseif ($loa_form->classification == "GL") {
-                $lc->GL_count -= $loa_form->num_work_days;
-            }
-            elseif ($loa_form->classification == "VAWCL") {
-                $lc->vawcl_count -= $loa_form->num_work_days;
-            }
-            $lc->save();
 
             return redirect('/loaforms')->with('success', 'LOA Form filed');
         } 
@@ -200,11 +184,6 @@ class LoaFormsController extends Controller
                 $alu->loa_form()->attach($loa_form);
             }
         }
-
-        // Deduct from Leave Counter of user
-        $lc = LeaveCounter::find($user->attendance_record->id);
-        $lc->sl_count -= $loa_form->num_work_days;
-        $lc->save();
 
         return redirect('/loaforms')->with('success', 'LOA Form filed');
     }
