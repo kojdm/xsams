@@ -76,5 +76,14 @@
             </div>
             {!! Form::close() !!}
         </div>
+
+        @if($loa_form->med_certificate)
+            <div class="row">
+                <div class="col-12">
+                    <img class="img-thumbnail" src="/storage/med_certificates/{{$loa_form->med_certificate}}" alt="Medical Certificate">
+                </div>
+            </div>
+        @endif
+
     </div>
 @endsection

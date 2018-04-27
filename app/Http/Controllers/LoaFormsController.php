@@ -7,6 +7,7 @@ use App\LoaForm;
 use App\Alu;
 use App\LeaveCounter;
 use App\User;
+use ImageOptimizer;
 
 class LoaFormsController extends Controller
 {
@@ -99,6 +100,7 @@ class LoaFormsController extends Controller
             'num_work_days' => 'required',
             'classification' => 'required',
             'reason' => 'sometimes|required',
+            'med_certificate' => 'required_if:type,==,sick|file|image'
         ]);
 
         $user = auth()->user();
@@ -111,8 +113,26 @@ class LoaFormsController extends Controller
         $loa_form->num_work_days = $request->input('num_work_days');
         $loa_form->classification = $request->input('classification');
         if ($request->input('reason')) {
-            $loa_form->reason = $request->input('reason');         
+            $loa_form->reason = $request->input('reason');
         }
+
+        // Attach medical certificate to LOA Form
+        if ($request->file('med_certificate')) {
+            // Get filename with extension
+            $filenameWithExt = $request->file('med_certificate')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('med_certificate')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            // Upload file
+            $path = $request->file('med_certificate')->storeAs('public/med_certificates', $fileNameToStore);
+
+            $loa_form->med_certificate = $fileNameToStore;
+        }
+
+        // Make LOA Form approved if user who submitted it is a supervisor
         if ($user->hasRole('supervisor')) {
             $loa_form->is_approved_supervisor = true;
         }

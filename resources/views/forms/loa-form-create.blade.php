@@ -1,4 +1,4 @@
-{!! Form::open(['action' => 'LoaFormsController@store', 'method' => 'POST']) !!}
+{!! Form::open(['action' => 'LoaFormsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group row">
         {{Form::label('name', 'Name', ['class' => 'col-sm-2 col-form-label'])}}
         <div class="col-sm-4">
@@ -49,6 +49,13 @@
         </div>
     </div>
 
+    <div class="form-group row">
+        {{Form::label('med_certificate', 'Medical Certificate', ['id' => 'med_certificate_label', 'class' => 'col-sm-2 col-form-label'])}}
+        <div class="col-sm-10">
+            {{Form::file('med_certificate', ['id' => 'med_certificate_input'])}}
+        </div>
+    </div>
+
     <br>
     <div class="form-group row">
         {{Form::submit('Submit', ['class' => 'btn btn-success col-sm-12'])}}
@@ -88,7 +95,10 @@
             var loa_type = document.getElementById("loa_type").value;
 
             var sick_classification = document.getElementById("sick_classification");
-            var regular_classification = document.getElementById("regular_classification");            
+            var regular_classification = document.getElementById("regular_classification");
+
+            var med_certificate_input = document.getElementById("med_certificate_input");
+            var med_certificate_label = document.getElementById("med_certificate_label");
 
             if (loa_type == "sick") {
                 sick_classification.style.display = 'block'; 
@@ -97,6 +107,9 @@
                 regular_classification.disabled = true;
                 
                 document.getElementById("reason_input").disabled = false;
+
+                med_certificate_input.style.display = 'block';
+                med_certificate_label.style.display = 'block';                
             }
             else if (loa_type == "regular") {
                 regular_classification.style.display = 'block'; 
@@ -111,10 +124,16 @@
                     document.getElementById("reason_input").value = '';
                     document.getElementById("reason_input").disabled = true;                 
                 }
+
+                med_certificate_input.style.display = 'none';
+                med_certificate_label.style.display = 'none';         
             }
             else {
                 document.getElementById("regular_classification").style.display = 'none';
-                document.getElementById("sick_classification").disabled = true;  
+                document.getElementById("sick_classification").disabled = true;
+
+                med_certificate_input.style.display = 'none';
+                med_certificate_label.style.display = 'none';                
             }
 
             datepickerSettings();

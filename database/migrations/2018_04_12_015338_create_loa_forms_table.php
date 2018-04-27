@@ -21,6 +21,7 @@ class CreateLoaFormsTable extends Migration
             $table->integer('num_work_days');
             $table->string('classification');
             $table->text('reason')->nullable();
+            $table->string('med_certificate')->nullable();
             $table->string('supervisor_remarks')->nullable();
             $table->string('admin_remarks')->nullable();
             $table->boolean('is_approved_supervisor')->default(false);
