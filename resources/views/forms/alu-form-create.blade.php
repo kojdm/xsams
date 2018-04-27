@@ -43,7 +43,7 @@
 
     <br>
     <div class="form-group row">
-        {{Form::submit('Submit', ['class' => 'btn btn-success col-sm-12'])}}
+        {{Form::submit('Submit', ['class' => 'btn btn-success col-sm-12', 'onclick' => 'return confirm("Are you sure want to submit this ALU Form?");'])}}
     </div>
     <div class="form-group row">
         <a href="/" class="btn btn-outline-secondary col-sm-12">Cancel</a>
