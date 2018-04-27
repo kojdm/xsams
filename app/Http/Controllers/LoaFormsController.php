@@ -7,7 +7,6 @@ use App\LoaForm;
 use App\Alu;
 use App\LeaveCounter;
 use App\User;
-use ImageOptimizer;
 
 class LoaFormsController extends Controller
 {
