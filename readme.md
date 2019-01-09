@@ -4,6 +4,8 @@
 
 ----
 
+Final thesis project of the Management Information Systems program in Ateneo de Manila University. Our client, Xavier School, had issues with their attendance management system, including dated technology, lost source code, and lack of automation. Upon review of their case, our project team, Timwork Solutions, developed an improved attendance management system addressing the client's needs. It's functions include automatic updating of employee attendance records from bio-metric scanners, filing of sick/vacation leaves,  and generation of employee attendance summaries. A web application built on Laravel and hosted on the client's in-house servers.
+
 ## Requirements
 * Operating System: Windows 7 & up
 * [XAMPP for Windows 7.24](https://www.apachefriends.org/download.html)
